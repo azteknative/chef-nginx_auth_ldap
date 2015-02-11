@@ -1,45 +1,28 @@
 nginx_auth_ldap Cookbook
 ========================
-TODO: Enter the cookbook description here.
-
-e.g.
-This cookbook makes your favorite breakfast sandwich.
+This cookbook handles the installation of the 3rd party nginx module that handles
+authentication via LDAP ( https://github.com/kvspb/nginx-auth-ldap ).
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
+#### platforms
+- RHEL
+- CentOS
 
-e.g.
+Currently, this cookbook only works on RHEL systems; this is due to the package requirements
+not being platform independent yet.
+
+#### cookbooks
+- `nginx` - without this, the nginx_auth_ldap cookbook is useless!
+
 #### packages
-- `toaster` - nginx_auth_ldap needs toaster to brown your bagel.
-
-Attributes
-----------
-TODO: List your cookbook attributes here.
-
-e.g.
-#### nginx_auth_ldap::default
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['nginx_auth_ldap']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
-  </tr>
-</table>
+- `unzip` - used to unzip the nginx-auth-ldap module source code.
+- `openldap-devel` - needed to compile the nginx-auth-ldap module.
 
 Usage
 -----
 #### nginx_auth_ldap::default
-TODO: Write usage instructions for each cookbook.
 
-e.g.
 Just include `nginx_auth_ldap` in your node's `run_list`:
 
 ```json
@@ -50,6 +33,10 @@ Just include `nginx_auth_ldap` in your node's `run_list`:
   ]
 }
 ```
+
+This will handle adding the nginx_auth_ldap::ngx_ldap_module recipe to the
+`node['nginx']['source']['modules']` attribute.
+
 
 Contributing
 ------------
@@ -65,4 +52,5 @@ e.g.
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+Author: Peter Green (peter.green@aztek-native.com)
+
