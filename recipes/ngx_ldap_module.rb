@@ -17,7 +17,18 @@ end
 
 # Ensure unzip is installed
 package "unzip"
-package "openldap-devel"
+
+# Install appropriate openldap development/header packages
+openldap_dev = value_for_platform(
+  [ "debian", "ubuntu" ] => {
+    "default" => "libldap2-dev"
+  },
+  [ "centos", "fedora", "redhat" ] => {
+    "default" => "openldap-devel"
+  }
+)
+
+package openldap_dev
 
 # Extract nginx-ldap-module
 bash 'extract_ldap_module' do
