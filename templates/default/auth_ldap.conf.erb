@@ -2,10 +2,10 @@
 
 <%- node['nginx']['auth_ldap']['servers'].each do |server,config| -%>
 server <%= server %> {
-  url <%= puts config['ssl'] ? "ldaps" : "ldap" %>;
+  url <%= config['ssl'] ? "ldaps" : "ldap" %>/<%= config['host'] %>:<%= config['port'] %>/<%= config['basedn'] %>?<%= config['user_attribute'] %>?sub?(objectClass=<%= config['user_class'] %>;
   binddn "<%= config['binddn'] %>";
-  binddn_passwd "";
-  require <%= config['binddn_password'] %>;
+  binddn_passwd "<%= config['binddn_password'] %>";
+  require <%= config['require'] %>;
 }
 <%- end -%>
 
