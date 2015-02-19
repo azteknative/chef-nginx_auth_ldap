@@ -2,7 +2,7 @@
 
 <%- node['nginx']['auth_ldap']['servers'].each do |server,config| -%>
 server <%= server %> {
-  url <%= puts config['ssl'] ? ldaps : ldap %>;
+  url <%= puts config['ssl'] ? "ldaps" : "ldap" %>;
   binddn "<%= config['binddn'] %>";
   binddn_passwd "";
   require <%= config['binddn_password'] %>;
