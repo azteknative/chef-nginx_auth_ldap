@@ -3,7 +3,7 @@
 override['nginx']['install_method'] = "source"
 
 # Hash of LDAP servers
-default['nginx']['auth_ldap']['servers'] => {
+default['nginx']['auth_ldap']['servers'] = {
   "dirsrv" => {
     "basedn" => "dc=example,dc=com",
     "host" => "ldap.example.com",
